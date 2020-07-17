@@ -1,3 +1,4 @@
+import java.util.*;
 public class EmpWage {
 		static int empWagePerHour=20;
 		static int workTime=8;
@@ -45,11 +46,28 @@ public class EmpWage {
 		}
 	    }
 	    
-	    
-		public static void main(String args[])
+	    public static void main(String args[])
 		{
+			Scanner sc=new Scanner(System.in);
 			Attendance();
-			dailyWage();
-			partTimeWage();
+			if(Employee=="present")
+			{ 
+				System.out.println("1.wages of the employee who does full time");
+				System.out.println("2.wages of the employee who does part time");
+				System.out.println("enter your choic");
+				int choice=sc.nextInt();
+				switch(choice)
+	    		{
+	    			case 1:
+	    				dailyWage();
+	    				break;
+	    			case 2:
+	    			    partTimeWage();
+	    			   break;	
+	    			default:
+	    				break;
+	    		}	
+				
+		   }
 		}
 	}
