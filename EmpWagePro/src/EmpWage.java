@@ -1,5 +1,4 @@
-   
-class UC1 {
+public class EmpWage {
 	    public static void Attendance() {
 		int emp=(int)(Math.random()*2);
 		if(emp==1)
