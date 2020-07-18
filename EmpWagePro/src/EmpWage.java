@@ -8,6 +8,8 @@ public class EmpWage {
 		static int partTime=4;
 		static int empWage;
 		static int totalEmpWage;
+		static int employeeHours;
+		static int total;
 	    public static void Attendance() {
 		int emp=(int)(Math.random()*2);
 		if(emp==1)
@@ -66,7 +68,6 @@ public class EmpWage {
 	    empWage=0;
 	    
 	    }
-	    
 	    public static void main(String args[])
 		{
 			Scanner sc=new Scanner(System.in);
@@ -89,7 +90,7 @@ public class EmpWage {
 	    				break;
 	    		}	
 				
-		   }
+		   
 			System.out.println("employee wage for month");
 			for(int i=0; i<=20; i++)
 			{
@@ -97,6 +98,13 @@ public class EmpWage {
 				totalEmpWage+=empWage;
 			}
 			System.out.println("total wage of month:"+totalEmpWage);
+			for(int j=1;j<=100;j++)
+			{
+
+			total+=empWagePerHour;
+			}
+			System.out.println(" Wages reaches for a monthfor working 100 hours is : "+total);
 			
+			}
 		}
 	}
