@@ -1,110 +1,41 @@
 import java.util.*;
 public class EmpWage {
-		static int empWagePerHour=20;
-		static int workTime=8;
-		static String Employee;
-		static int dailyEmpWage;
-		static int partTimeEmpWage;
-		static int partTime=4;
-		static int empWage;
-		static int totalEmpWage;
-		static int employeeHours;
-		static int total;
-	    public static void Attendance() {
-		int emp=(int)(Math.random()*2);
-		if(emp==1)
-		{ 
-			Employee="present";
-			System.out.println("employee is present");
-		}
-		else
-		{	
-			System.out.println("employee is absent");
-		}
-	    }
-	    public static void dailyWage()
-	    {
-	    	if(Employee=="present")
-	    	 {
-	    	dailyEmpWage=(empWagePerHour*workTime);
-	    	System.out.println("Daily Wage of Employee is :"+dailyEmpWage);
-	    	empWage=dailyEmpWage;
-		    }
-		else
-		{
-			dailyEmpWage=0;
-			System.out.println("Daily wage of Employee is :"+dailyEmpWage);
-		}
-	    }
-	    
-	    public static void partTimeWage()
-	    {
-	    	if(Employee=="present")
-	    	 {
-	    	partTimeEmpWage=(empWagePerHour*partTime);
-	    	System.out.println("part time of Employee is :"+partTimeEmpWage);
-	    	empWage=partTimeEmpWage;
-		    }
-		else
-		{
-			partTimeEmpWage=0;
-			System.out.println("part time of employee wage of Employee is :"+partTimeEmpWage);
-		}
-	    }
-	    public static void checkifAvailable() 
-	    {
-	    int person=(int)(Math.random()*3);
-	    if(person==1)
-	    {
-	    dailyWage();
-	    int empWage=dailyEmpWage;
-	    }
-	    else if(person==2)
-	    {
-	    partTimeWage();
-	    empWage=partTimeEmpWage;
-	    }
-	    else
-	    empWage=0;
-	    
-	    }
-	    public static void main(String args[])
-		{
-			Scanner sc=new Scanner(System.in);
-			Attendance();
-			if(Employee=="present")
-			{ 
-				System.out.println("1.wages of the employee who does full time");
-				System.out.println("2.wages of the employee who does part time");
-				System.out.println("enter your choice");
-				int choice=sc.nextInt();
-				switch(choice)
-	    		{
-	    			case 1:
-	    				dailyWage();
-	    				break;
-	    			case 2:
-	    			    partTimeWage();
-	    			   break;	
-	    			default:
-	    				break;
-	    		}	
-				
-		   
-			System.out.println("employee wage for month");
-			for(int i=0; i<=20; i++)
+	public static int empWagePerHr=20;
+	static int workingDays=20;
+	static int maxHrInMonth=100;
+	static int empHrs=0;
+	static int totalWage=0;
+	static int totalEmpHrs=0;
+	static int totalWorkingDay=0;
+	static int empWage;
+	public static int empwage()
+	{
+	while (totalEmpHrs<=100&&totalWorkingDay<20)
+	{
+		totalWorkingDay++;
+		int check=(int)Math.floor(Math.random()*10)%3;
+			switch(check)
 			{
-				checkifAvailable();
-				totalEmpWage+=empWage;
+			case 1:
+				empHrs=8; 
+				break;
+			case 2:
+				empHrs=4;
+				break;
+			default:
+				empHrs=0;
 			}
-			System.out.println("total wage of month:"+totalEmpWage);
-			for(int j=1;j<=100;j++)
-			{
-
-			total+=empWagePerHour;
+			totalEmpHrs+=empHrs;
+			empWage=empHrs*empWagePerHr;
+			System.out.println("day:"+totalWorkingDay+"Employeehrs"+empHrs+"employeeWages"+empWage);
 			}
-			System.out.println(" Wages reaches for a monthfor working 100 hours is : "+total);
-			
-			}
+	totalWage=totalEmpHrs*empWagePerHr;
+	System.out.println("total employee wgae"+totalWage);
+	return totalWage;
+	}
+	public static void main(String args[])
+	{
+		EmpWage e1=new EmpWage();
+		e1.empwage();
 		}
 	}
