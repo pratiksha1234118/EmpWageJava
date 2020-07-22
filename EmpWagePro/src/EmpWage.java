@@ -1,63 +1,63 @@
-  public class EmpWage {
-	private static String companyName;
-	private static int wagePerHour;
-	private static int fullDayHour;
-	private static int totalHours;
-	private static int dayPerMonth;
-	private static int monthlyWage;
+public class EmpWage {
 
-	EmpWage( String companyName, int wagePerHour, int fullDayHour, int totalHours, int dayPerMonth) {
-		this.companyName=companyName;
-		this.wagePerHour = wagePerHour;
-		this.fullDayHour = fullDayHour;
-		this.totalHours = totalHours;
-		this.dayPerMonth = dayPerMonth;
+	private int numOfCompany=0;
+	private CompanyEmpWage[] companyEmpWageArray;
+
+	public EmpWage(){
+	companyEmpWageArray = new CompanyEmpWage[5];
 	}
+
+	 private void addCompanyEmpWage(String company, int empRatePerHr, int 
+					numWorkingDays, int maxHrInMonth){
+ 
+	companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
+	numOfCompany++;
+       }
+
+
+	private void employeeWage(){
+	for(int i=0; i<numOfCompany; i++){
+	    companyEmpWageArray[i].setTotalEmpWage(this.employeeWage(companyEmpWageArray[i]));
+	System.out.println(companyEmpWageArray[i]);
+	}
+	}
+	public int employeeWage(CompanyEmpWage companyEmpWage){
+	int hour=0;
+	int salary=0;
+	int counter=0;
+	int totalEmpHrs=0;
+	int totalWorkingDays=0;
+
+	while( totalEmpHrs < companyEmpWage.maxHrInMonth && totalWorkingDays < companyEmpWage.numWorkingDays){
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+		counter+=1;
+	totalWorkingDays+=1;
+
+	switch(empCheck){
+	case 1:
+		hour=4;
+		break;
+	case 2:
+		hour=8;
+		break;
+	default:
+		hour=0;
+	   }
+
+	System.out.println("Day "+counter+"  Emp Hour= "+hour+" salary is: "+(companyEmpWage.empRatePerHr)*hour);
+	totalEmpHrs = totalEmpHrs+hour;
+	}
+
+	return totalEmpHrs*companyEmpWage.empRatePerHr;
+	//return totalSalary;
+
+    }
 	
-		private static void CompnayWage() {
-			//variable
-			int dailyHours;
-			int dailyWage = 0;
-			int hours = 0;
-			int day = 0;
-			//computation
-			while ( hours <= totalHours && day < dayPerMonth )
-			{
-				int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-				switch (empCheck) {
-					case 1:
-						dailyHours = fullDayHour;
-						break;
-					case 2:
-						dailyHours = fullDayHour / 2;
-						break;
-					default:
-						dailyHours = 0;
-						break;
-				}
-				hours += dailyHours;
-				day++;
-				dailyWage= wagePerHour * dailyHours;
-				monthlyWage += dailyWage;
-				//System.out.println("day: "+day+ " dailyhrs "+dailyHours+" dailyWages "+dailyWage);
-				
-	      }
-			//System.out.println("Monthly Wage of "+companyName+" is: "+monthlyWage);
-		}
-		
-		@Override
-		public String toString()
-		{
-			return "total employee wages of company" +companyName+ " is " +monthlyWage;
-		}
-	public static void main(String args[])
-	{
-		
-		EmpWage c1=new EmpWage("jio",24,8,123,20);
-		c1.CompnayWage();
-		System.out.println(c1);
-		EmpWage c2=new EmpWage("amazon",24,8,123,20);
-		c2.CompnayWage();
-		System.out.println(c2);
-		}
+	public static void main(String args[]){
+    EmpWage empWageBuilder = new EmpWage();
+	empWageBuilder.addCompanyEmpWage("jio",30,20,100);
+	empWageBuilder.addCompanyEmpWage("amazon",25,24,80);
+	empWageBuilder.employeeWage();
+
 	}
+}
