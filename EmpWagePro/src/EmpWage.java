@@ -1,26 +1,33 @@
+import java.util.ArrayList;
+
 public  class EmpWage implements ICompanyEmpWage {
 
 	 private int numOfCompany=0;
-	private CompanyEmpWage[] companyEmpWageArray;
-
+	private ArrayList <CompanyEmpWage> companyEmpWageList;
 	public EmpWage(){
-	companyEmpWageArray = new CompanyEmpWage[5];
+		companyEmpWageList=new ArrayList<>();
 	}
 
 	 public void addCompanyEmpWage(String company, int empRatePerHr, int 
 					numWorkingDays, int maxHrInMonth){
  
-	companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
+	CompanyEmpWage companyEmpWage= new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
+		 
+		 companyEmpWageList.add(companyEmpWage);
 	numOfCompany++;
        }
 
 public void employeeWage(){
-	for(int i=0; i<numOfCompany; i++){
-	    companyEmpWageArray[i].setTotalEmpWage(this.employeeWage(companyEmpWageArray[i]));
-	System.out.println(companyEmpWageArray[i]);
+	for(int i=0; i<companyEmpWageList.size(); i++){
+		CompanyEmpWage companyEmpWage =companyEmpWageList.get(i);
+	    companyEmpWage.setTotalEmpWage(this.employeeWage(companyEmpWage));
+	System.out.println(companyEmpWage);
 	}
 	}
-	public int employeeWage(CompanyEmpWage companyEmpWage){
+
+	public int employeeWage(CompanyEmpWage companyEmpWage) 
+	
+	{
 	int hour=0;
 	int salary=0;
 	int counter=0;
@@ -50,13 +57,13 @@ public void employeeWage(){
 	return totalEmpHrs*companyEmpWage.empRatePerHr;
 	//return totalSalary;
 
-    }
+	}
 		public static void main(String args[]){
-		ICompanyEmpWage i1= new EmpWage();
-  
-	i1.addCompanyEmpWage("jio",30,20,100);
-    i1.addCompanyEmpWage("amazon",25,24,80);
-	i1.employeeWage();
-
+			
+			ICompanyEmpWage empWage = new EmpWage();
+			empWage.addCompanyEmpWage("jio",30,20,100);
+			empWage.employeeWage();
+			empWage.addCompanyEmpWage("amazon",25,24,80);
+			empWage.employeeWage();
 	}
 }
