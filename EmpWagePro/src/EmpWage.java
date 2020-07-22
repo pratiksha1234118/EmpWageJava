@@ -1,21 +1,20 @@
-public class EmpWage {
+public  class EmpWage implements ICompanyEmpWage {
 
-	private int numOfCompany=0;
+	 private int numOfCompany=0;
 	private CompanyEmpWage[] companyEmpWageArray;
 
 	public EmpWage(){
 	companyEmpWageArray = new CompanyEmpWage[5];
 	}
 
-	 private void addCompanyEmpWage(String company, int empRatePerHr, int 
+	 public void addCompanyEmpWage(String company, int empRatePerHr, int 
 					numWorkingDays, int maxHrInMonth){
  
 	companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
 	numOfCompany++;
        }
 
-
-	private void employeeWage(){
+public void employeeWage(){
 	for(int i=0; i<numOfCompany; i++){
 	    companyEmpWageArray[i].setTotalEmpWage(this.employeeWage(companyEmpWageArray[i]));
 	System.out.println(companyEmpWageArray[i]);
@@ -52,12 +51,12 @@ public class EmpWage {
 	//return totalSalary;
 
     }
-	
-	public static void main(String args[]){
-    EmpWage empWageBuilder = new EmpWage();
-	empWageBuilder.addCompanyEmpWage("jio",30,20,100);
-	empWageBuilder.addCompanyEmpWage("amazon",25,24,80);
-	empWageBuilder.employeeWage();
+		public static void main(String args[]){
+		ICompanyEmpWage i1= new EmpWage();
+  
+	i1.addCompanyEmpWage("jio",30,20,100);
+    i1.addCompanyEmpWage("amazon",25,24,80);
+	i1.employeeWage();
 
 	}
 }
