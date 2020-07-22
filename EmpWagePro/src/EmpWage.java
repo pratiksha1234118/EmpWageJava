@@ -56,7 +56,6 @@ public void employeeWage(){
 
 	return totalEmpHrs*companyEmpWage.empRatePerHr;
 	//return totalSalary;
-
 	}
 		public static void main(String args[]){
 			
