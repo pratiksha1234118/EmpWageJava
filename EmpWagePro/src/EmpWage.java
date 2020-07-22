@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public  class EmpWage implements ICompanyEmpWage {
 
 	 private int numOfCompany=0;
 	private ArrayList <CompanyEmpWage> companyEmpWageList;
+	private Map<String,CompanyEmpWage> companyToEmpWageMap;
 	public EmpWage(){
 		companyEmpWageList=new ArrayList<>();
+		companyToEmpWageMap = new HashMap<>();	
 	}
 
 	 public void addCompanyEmpWage(String company, int empRatePerHr, int 
@@ -14,6 +18,7 @@ public  class EmpWage implements ICompanyEmpWage {
 	CompanyEmpWage companyEmpWage= new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
 		 
 		 companyEmpWageList.add(companyEmpWage);
+		 companyToEmpWageMap.put(company,companyEmpWage);
 	numOfCompany++;
        }
 
@@ -25,8 +30,12 @@ public void employeeWage(){
 	}
 	}
 
+  @Override
+    public int getTotalWage(String company){
+    return companyToEmpWageMap.get(company).totalSalary;
+}
 	public int employeeWage(CompanyEmpWage companyEmpWage) 
-	
+
 	{
 	int hour=0;
 	int salary=0;
@@ -61,8 +70,8 @@ public void employeeWage(){
 			
 			ICompanyEmpWage empWage = new EmpWage();
 			empWage.addCompanyEmpWage("jio",30,20,100);
-			empWage.employeeWage();
 			empWage.addCompanyEmpWage("amazon",25,24,80);
 			empWage.employeeWage();
+			System.out.println("Total Wage for jio Company: "+empWage.getTotalWage("jio"));
 	}
 }
